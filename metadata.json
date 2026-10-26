@@ -1,0 +1,7 @@
+{
+  "name": "Dunkin' Rewards Exclusive Offer",
+  "description": "Unlock your exclusive Dunkin' Donuts promotional reward and discount code by completing a quick verification survey.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
