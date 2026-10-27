@@ -1,46 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface DunkinLogoProps {
-  size?: number;
   className?: string;
-  showHalo?: boolean;
+  width?: number;
 }
 
 export const DunkinLogo: React.FC<DunkinLogoProps> = ({
-  size = 120,
   className = '',
-  showHalo = true,
+  width = 140,
 }) => {
-  const [imgSrc, setImgSrc] = useState<string>('/assets/dunkin_logo.png');
-
-  // Handle fallback if local asset fails to load
-  const handleError = () => {
-    if (imgSrc !== 'https://i.postimg.cc/zGd1NBGT/5af42b2e31010a24ac46d2cb5a0e60a6.png') {
-      setImgSrc('https://i.postimg.cc/zGd1NBGT/5af42b2e31010a24ac46d2cb5a0e60a6.png');
-    }
-  };
-
   return (
-    <div
-      className={`relative inline-flex items-center justify-center ${className}`}
-      style={{ width: size, height: 'auto' }}
-    >
-      {/* Ambient warm orange/pink halo glow */}
-      {showHalo && (
-        <div
-          className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF671F]/20 to-[#DA1884]/20 blur-xl -z-10 animate-pulse pointer-events-none"
-          style={{ animationDuration: '3.5s' }}
-        />
-      )}
-
+    <div className={`inline-flex items-center justify-center ${className}`}>
       <img
-        src={imgSrc}
-        alt="Dunkin' Donuts Official Logo"
-        onError={handleError}
-        className="w-full h-auto max-h-[160px] object-contain drop-shadow-md select-none transition-transform duration-300 hover:scale-105"
-        style={{ maxWidth: size }}
-        referrerPolicy="no-referrer"
+        src="/assets/dunkin_logo.png"
+        alt="Dunkin' Donuts"
+        width={width}
+        className="h-auto max-h-[140px] object-contain drop-shadow-sm select-none hover:scale-105 transition-transform duration-300"
         loading="eager"
+        onError={(e) => {
+          const target = e.currentTarget;
+          if (target.src !== 'https://i.postimg.cc/zGd1NBGT/5af42b2e31010a24ac46d2cb5a0e60a6.png') {
+            target.src = 'https://i.postimg.cc/zGd1NBGT/5af42b2e31010a24ac46d2cb5a0e60a6.png';
+          }
+        }}
       />
     </div>
   );
